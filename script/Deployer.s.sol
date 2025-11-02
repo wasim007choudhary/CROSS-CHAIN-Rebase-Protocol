@@ -18,17 +18,29 @@ contract DeployTokenAndPool is Script {
         CCIPLocalSimulatorFork ccipLocalSimulatorFork = new CCIPLocalSimulatorFork();
         Register.NetworkDetails memory networkDetails = ccipLocalSimulatorFork.getNetworkDetails(block.chainid);
 
+        // Step 1: Deploy token + pool as default deployer
         vm.startBroadcast();
         ccrToken = new CCRToken();
         ccrtPool = new CCRebaseTokenPool(
             IERC20(address(ccrToken)), new address, networkDetails.rmnProxyAddress, networkDetails.routerAddress
         );
         ICCRebaseToken(ccrToken).grantMintAndBurnRoleAccess(address(ccrtPool));
+        vm.stopBroadcast();
+
+        // Step 2: Switch to token owner for registry configuration
+        address tokenOwner = ccrToken.owner();
+        vm.startBroadcast(tokenOwner);
+
+        // Register token under admin registry
         RegistryModuleOwnerCustom(networkDetails.registryModuleOwnerCustomAddress).registerAdminViaOwner(
             address(ccrToken)
         );
+
+        // Accept admin role and assign pool
         TokenAdminRegistry(networkDetails.tokenAdminRegistryAddress).acceptAdminRole(address(ccrToken));
+
         TokenAdminRegistry(networkDetails.tokenAdminRegistryAddress).setPool(address(ccrToken), address(ccrtPool));
+
         vm.stopBroadcast();
     }
 }
