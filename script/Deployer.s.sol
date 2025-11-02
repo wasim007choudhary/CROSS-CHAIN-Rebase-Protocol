@@ -11,7 +11,7 @@ import {CCIPLocalSimulatorFork, Register} from "lib/chainlink-local/src/ccip/CCI
 import {IERC20} from "lib/ccip/contracts/src/v0.8/vendor/openzeppelin-solidity/v4.8.3/contracts/token/ERC20/IERC20.sol";
 
 import {RegistryModuleOwnerCustom} from
-    "lib/chainlink-local/lib/ccip/contracts/src/v0.8/ccip/tokenAdminRegistry/RegistryModuleOwnerCustom.sol";
+    "lib/ccip/contracts/src/v0.8/ccip/tokenAdminRegistry/RegistryModuleOwnerCustom.sol";
 import {TokenAdminRegistry} from "lib/ccip/contracts/src/v0.8/ccip/tokenAdminRegistry/TokenAdminRegistry.sol";
 
 contract DeployTokenAndPool is Script {
