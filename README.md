@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/ccrt-logo.png" alt="CCRT Logo" width="210"/>
+  <img src="./assets/ccrt-logo.svg" alt="CCRT Logo" width="210"/>
 
 # 🔄 CCRT — Cross-Chain Rebase Token Protocol
 
