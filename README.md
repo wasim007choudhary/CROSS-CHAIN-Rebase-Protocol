@@ -36,33 +36,6 @@ When bridging across chains, CCRT preserves:
 ---
 
 
-## 🏗 Protocol Architecture
-
-```mermaid
-flowchart LR
-    subgraph Source[Source Chain]
-        SP[CCRebaseTokenPool]
-        ST[CCRToken]
-        SV[(CCRVault)]
-    end
-
-    subgraph Destination[Destination Chain]
-        DP[CCRebaseTokenPool]
-        DT[CCRToken]
-    end
-
-    SP <--> |CCIP Messaging| DP
-    SP --> ST
-    DP --> DT
-    ST --> SV
-
-    %% Redemption path
-    DT -. "Return to Source Chain" .-> DP
-    DP -. "CCIP Burn + Principal Sync" .-> SP
-    SP -. "Redeem Collateral" .-> SV
- ```
----
-
 ### 🔍 Key Design Notes
 
 | Chain | Components | Abilities |
