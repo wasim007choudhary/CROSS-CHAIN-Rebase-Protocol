@@ -21,7 +21,7 @@ contract DeployTokenAndPool is Script {
         vm.startBroadcast();
         ccrToken = new CCRToken();
         ccrtPool = new CCRebaseTokenPool(
-            IERC20(address(ccrToken)), new address[](0), networkDetails.rmnProxyAddress, networkDetails.routerAddress
+            IERC20(address(ccrToken)), new address, networkDetails.rmnProxyAddress, networkDetails.routerAddress
         );
         ICCRebaseToken(ccrToken).grantMintAndBurnRoleAccess(address(ccrtPool));
         RegistryModuleOwnerCustom(networkDetails.registryModuleOwnerCustomAddress).registerAdminViaOwner(
