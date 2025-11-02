@@ -24,23 +24,25 @@ contract DeployTokenAndPool is Script {
         ccrtPool = new CCRebaseTokenPool(
             IERC20(address(ccrToken)), new address, networkDetails.rmnProxyAddress, networkDetails.routerAddress
         );
-        ICCRebaseToken(ccrToken).grantMintAndBurnRoleAccess(address(ccrtPool));
+
         vm.stopBroadcast();
+    }
+}
 
-        // Step 2: Switch to token owner for registry configuration
-        address tokenOwner = ccrToken.owner();
-        vm.startBroadcast(tokenOwner);
+contract setPermissions is Script {
+    function grantRole(address token, address pool) public {
+        vm.startBroadcast();
+        ICCRebaseToken(token).grantMintAndBurnRoleAccess(address(pool));
+    }
 
-        // Register token under admin registry
-        RegistryModuleOwnerCustom(networkDetails.registryModuleOwnerCustomAddress).registerAdminViaOwner(
-            address(ccrToken)
-        );
+    function setAdmin(address token, address pool) public {
+        CCIPLocalSimulatorFork ccipLocalSimulatorFork = new CCIPLocalSimulatorFork();
+        Register.NetworkDetails memory networkDetails = ccipLocalSimulatorFork.getNetworkDetails(block.chainid);
 
-        // Accept admin role and assign pool
-        TokenAdminRegistry(networkDetails.tokenAdminRegistryAddress).acceptAdminRole(address(ccrToken));
-
-        TokenAdminRegistry(networkDetails.tokenAdminRegistryAddress).setPool(address(ccrToken), address(ccrtPool));
-
+        vm.startBroadcast();
+        RegistryModuleOwnerCustom(networkDetails.registryModuleOwnerCustomAddress).registerAdminViaOwner(address(token));
+        TokenAdminRegistry(networkDetails.tokenAdminRegistryAddress).acceptAdminRole(address(token));
+        TokenAdminRegistry(networkDetails.tokenAdminRegistryAddress).setPool(address(token), address(pool));
         vm.stopBroadcast();
     }
 }
