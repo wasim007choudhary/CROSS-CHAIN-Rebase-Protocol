@@ -35,19 +35,46 @@ When bridging across chains, CCRT preserves:
 
 ---
 
+
 ## 🏗 Protocol Architecture
 
-Chain A (e.g., Sepolia) Chain B (e.g., zkSync)
-┌─────────────────────┐ CCIP ┌─────────────────────┐
-│ CCRebaseTokenPool │◀────────────────▶│ CCRebaseTokenPool │
-└─────────┬───────────┘ └─────────┬───────────┘
-│ │
-▼ ▼
-CCRToken CCRToken
-│ │
-▼ ▼
-CCRVault CCRVault (optional)
+```mermaid
+flowchart LR
+    subgraph Source[Source Chain]
+        SP[CCRebaseTokenPool]
+        ST[CCRToken]
+        SV[(CCRVault)]
+    end
 
+    subgraph Destination[Destination Chain]
+        DP[CCRebaseTokenPool]
+        DT[CCRToken]
+    end
+
+    SP <--> |CCIP Messaging| DP
+    SP --> ST
+    DP --> DT
+    ST --> SV
+
+    %% Redemption path
+    DT -. "Return to Source Chain" .-> DP
+    DP -. "CCIP Burn + Principal Sync" .-> SP
+    SP -. "Redeem Collateral" .-> SV
+ ```
+---
+
+### 🔍 Key Design Notes
+
+| Chain | Components | Abilities |
+|------|------------|-----------|
+| **Source Chain** | `CCRVault`, `CCRToken`, `CCRebaseTokenPool` | ✅ Mint, ✅ Burn, ✅ Rebase, ✅ **Redeem collateral** |
+| **Destination Chains** | `CCRToken`, `CCRebaseTokenPool` | ✅ Mint (via CCIP), ✅ Burn (return to source), ❌ **No collateral redemption** |
+
+**Why?**  
+Collateral must remain *consolidated on a single chain* to avoid:
+- Over-redemption attacks
+- Collateral mis-accounting
+- Multi-chain insolvency
 
 ---
 
@@ -57,9 +84,9 @@ CCRVault CCRVault (optional)
 |---------|------|
 | `CCRToken` | The rebase-aware ERC20 token |
 | `CCRebaseTokenPool` | Handles cross-chain burn/mint via Chainlink CCIP |
-| `CCRVault` | Accepts native deposits → mints rebasing principal |
+| `CCRVault` | Accepts native deposits → mints rebasing principal and will only be deployed in the source chain by architecture logic |
 | Bridging Scripts | Automate cross-chain messaging and fee handling |
-| Pool Config Scripts | Register remote pool mappings + rate limits |
+| Pool Config Scripts | Scripts for Bridging Token Cross Chain |
 
 ---
 
@@ -101,13 +128,7 @@ vault.redeem(type(uint256).max);
 
 forge test -vv
 
-## 🧩 Roadmap
-
-✅ Multi-chain rebase sync working  
-✅ CCIP token messaging pools configured  
-⏳ UI dashboard & visual analytics  
-⏳ zkSync mainnet deployment  
-⏳ LST collateral support
+---
 
 ## 🤝 Connect
 
