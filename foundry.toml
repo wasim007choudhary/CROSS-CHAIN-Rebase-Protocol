@@ -3,6 +3,9 @@ src = "src"
 out = "out"
 libs = ["lib"]
 
-rpc_endpoints= {sepolia = "https://eth-sepolia.g.alchemy.com/v2/JJPv4hroatllHOJCqj9fPh9oew8Mzz5Y", arb-sepolia = "https://sepolia-rollup.arbitrum.io/rpc"}
+rpc_endpoints= {sepolia = "https://eth-sepolia.g.alchemy.com/v2/JJPv4hroatllHOJCqj9fPh9oew8Mzz5Y", arb-sepolia = "https://sepolia-rollup.arbitrum.io/rpc", zksync-spolia = "**"}
 
 
+remappings = [
+'@ccip/=lib/ccip/'
+]

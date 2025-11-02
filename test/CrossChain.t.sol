@@ -8,14 +8,13 @@ import {CCRVault} from "../src/CCRTvault.sol";
 import {ICCRebaseToken} from "../src/Interface/ICCRebaseToken.sol";
 import {CCRebaseTokenPool} from "../src/CCRebaseTokenPool.sol";
 import {CCIPLocalSimulatorFork, Register} from "lib/chainlink-local/src/ccip/CCIPLocalSimulatorFork.sol";
-import {IERC20} from "lib/ccip/contracts/src/v0.8/vendor/openzeppelin-solidity/v4.8.3/contracts/token/ERC20/IERC20.sol";
-import {RegistryModuleOwnerCustom} from
-    " lib/ccip/contracts/src/v0.8/ccip/tokenAdminRegistry/RegistryModuleOwnerCustom.sol";
-import {TokenAdminRegistry} from "lib/ccip/contracts/src/v0.8/ccip/tokenAdminRegistry/TokenAdminRegistry.sol";
-import {TokenPool} from "lib/ccip/contracts/src/v0.8/ccip/pools/TokenPool.sol";
-import {RateLimiter} from "lib/ccip/contracts/src/v0.8/ccip/libraries/RateLimiter.sol";
-import {Client} from "lib/ccip/contracts/src/v0.8/ccip/libraries/Client.sol";
-import {IRouterClient} from "lib/ccip/contracts/src/v0.8/ccip/interfaces/IRouterClient.sol";
+import {IERC20} from "@ccip/contracts/src/v0.8/vendor/openzeppelin-solidity/v4.8.3/contracts/token/ERC20/IERC20.sol";
+import {RegistryModuleOwnerCustom} from "@ccip/contracts/src/v0.8/ccip/tokenAdminRegistry/RegistryModuleOwnerCustom.sol";
+import {TokenAdminRegistry} from "@ccip/contracts/src/v0.8/ccip/tokenAdminRegistry/TokenAdminRegistry.sol";
+import {RateLimiter} from "@ccip/contracts/src/v0.8/ccip/libraries/RateLimiter.sol";
+import {IRouterClient} from "@ccip/contracts/src/v0.8/ccip/interfaces/IRouterClient.sol";
+import {Client} from "@ccip/contracts/src/v0.8/ccip/libraries/Client.sol";
+import {TokenPool} from "@ccip/contracts/src/v0.8/ccip/pools/TokenPool.sol";
 
 contract CCTest is Test {
     CCRToken sepoliaCCRToken;

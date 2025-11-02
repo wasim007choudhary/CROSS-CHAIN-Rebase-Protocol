@@ -3,8 +3,8 @@
 pragma solidity ^0.8.20;
 
 import {Script} from "forge-std/Script.sol";
-import {TokenPool} from "lib/ccip/contracts/src/v0.8/ccip/pools/TokenPool.sol";
-import {RateLimiter} from "lib/ccip/contracts/src/v0.8/ccip/libraries/RateLimiter.sol";
+import {TokenPool} from "@ccip/contracts/src/v0.8/ccip/pools/TokenPool.sol";
+import {RateLimiter} from "@ccip/contracts/src/v0.8/ccip/libraries/RateLimiter.sol";
 
 contract PoolConfigScript is Script {
     function run(

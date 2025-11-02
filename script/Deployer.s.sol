@@ -8,11 +8,10 @@ import {ICCRebaseToken} from "../src/Interface/ICCRebaseToken.sol";
 import {CCRToken} from "../src/CCRebaseToken.sol";
 import {CCRebaseTokenPool} from "../src/CCRebaseTokenPool.sol";
 import {CCIPLocalSimulatorFork, Register} from "lib/chainlink-local/src/ccip/CCIPLocalSimulatorFork.sol";
-import {IERC20} from "lib/ccip/contracts/src/v0.8/vendor/openzeppelin-solidity/v4.8.3/contracts/token/ERC20/IERC20.sol";
+import {IERC20} from "@ccip/contracts/src/v0.8/vendor/openzeppelin-solidity/v4.8.3/contracts/token/ERC20/IERC20.sol";
 
-import {RegistryModuleOwnerCustom} from
-    "lib/ccip/contracts/src/v0.8/ccip/tokenAdminRegistry/RegistryModuleOwnerCustom.sol";
-import {TokenAdminRegistry} from "lib/ccip/contracts/src/v0.8/ccip/tokenAdminRegistry/TokenAdminRegistry.sol";
+import {RegistryModuleOwnerCustom} from "@ccip/contracts/src/v0.8/ccip/tokenAdminRegistry/RegistryModuleOwnerCustom.sol";
+import {TokenAdminRegistry} from "@ccip/contracts/src/v0.8/ccip/tokenAdminRegistry/TokenAdminRegistry.sol";
 
 contract DeployTokenAndPool is Script {
     function run() public returns (CCRToken ccrToken, CCRebaseTokenPool ccrtPool) {
