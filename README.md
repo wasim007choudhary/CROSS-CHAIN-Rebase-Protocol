@@ -14,6 +14,9 @@ Built with **Solidity**, powered by **Chainlink CCIP**, deployed across **multi-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Powered by CCIP](https://img.shields.io/badge/Powered%20By-Chainlink%20CCIP-blue?logo=chainlink)](https://chain.link/cross-chain)
 
+[![X (Twitter)](https://img.shields.io/badge/X-@i___wasim-black?logo=x)](https://x.com/i___wasim)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Wasim%20Choudhary-blue?logo=linkedin)](https://www.linkedin.com/in/wasim-007-choudhary/)
+
 </div>
 
 ---
