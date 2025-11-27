@@ -36,7 +36,7 @@ When bridging across chains, CCRT preserves:
 ---
 
 
-### 🔍 Key Design Notes
+### 🔍 Key Design Notes*
 
 | Chain | Components | Abilities |
 |------|------------|-----------|
