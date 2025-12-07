@@ -1,7 +1,7 @@
 <div align="center">
   <img src="./assets/ccrt-logo.svg" alt="CCRT Logo" width="210"/>
 
-# 🔄 CCRT — Cross-Chain Rebase Token Protocol
+# 🔄 CCRT — Cross-Chain Rebase Token *Protocol
 
 **A unified, rebase-aware token that maintains yield, principal, and state across chains.**  
 Built with **Solidity**, powered by **Chainlink CCIP**, deployed across **multi-chain networks**.
